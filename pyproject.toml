@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "st-graph-audit"
+version = "0.1.0"
+description = "Edge-level audit and gene gate for foundation-model skip edges in spatial transcriptomics graphs"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "scikit-learn",
+    "pot",
+    "anndata",
+    "scanpy",
+    "scikit-misc",
+]
+
+[project.scripts]
+st-graph-audit = "st_graph_audit.cli:main"
+
+[tool.setuptools]
+packages = ["st_graph_audit"]

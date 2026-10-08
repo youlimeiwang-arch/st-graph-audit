@@ -1,0 +1,153 @@
+version: '0.9'
+spec: st_graph_audit_spec.md
+freeze_training: gene-gated mclust 0.617 unchanged
+thresholds:
+  tau_gene: 0.2
+  tau_img: 0.7
+  tau_fm: 0.8
+  tau_remote: 3.0
+skip_rule:
+  n_collide_min: 10
+  nn_mult_min: 3.0
+  gene_median_max: 0.2
+harm_budgets:
+  breast_skip_on_strict:
+    lookalike_max: 0
+    remote_max: 0
+    remote_gene_agree_max: 0
+    spatial_lookalike_max: 0
+  breast_skip_on_ffpe:
+    lookalike_max: 1
+    remote_max: 0
+    remote_gene_agree_max: 0
+    spatial_lookalike_max: 1
+  breast_skip_off:
+    skip_rule_must_be: false
+    mode: skip_off_confirmed
+  cross_layer:
+    mode: report_only
+audit_arms_default:
+- GraphST (k=3)
+- STAGATE (radius)
+- SpaceFlow (spatial)
+- STAIG spatial (k=5)
+- STAIG+ungated FM skip
+- STAMP gene-gated skip
+- STAMP gene-gated + max_hops=2
+slides:
+  BlockA:
+    path: Dataset/visium/Human_Breast_Cancer
+    primary: idc_dcis
+    role: breast case (IDC–DCIS)
+    skip_rule_on: true
+    recommended_arm: STAMP gene-gated skip (gene_k=10 mutual)
+    graph_config:
+      base: STAIG spatial k=5
+      fm_skip: true
+      gene_gate:
+        gene_k: 10
+        mutual: true
+        gene_key: feat
+      max_hops: 0
+    harm_budget_profile: breast_skip_on_strict
+    harm_budget_status: PASS
+    harm_metrics:
+      collide: 24
+      look: 0
+      remote: 0
+      rga: 0
+      spatial_look: 0
+    violations: []
+    flags:
+    - gate repairs lookalike 68→0
+  BlockA_Sec2:
+    path: Dataset/visium/Block_A_Section_2
+    primary: idc_dcis
+    role: adjacent 10µm (xfer coarse, NOT pathologist GT)
+    skip_rule_on: true
+    recommended_arm: STAMP gene-gated + max_hops=2
+    graph_config:
+      base: STAIG spatial k=5
+      fm_skip: true
+      gene_gate:
+        gene_k: 10
+        mutual: true
+        gene_key: feat
+      max_hops: 2
+    harm_budget_profile: breast_skip_on_strict
+    harm_budget_status: PASS
+    harm_metrics:
+      collide: 26
+      look: 0
+      remote: 0
+      rga: 0
+      spatial_look: 0
+    violations: []
+    flags:
+    - gate repairs lookalike 76→0
+  CytAssist_Patho:
+    path: Dataset/visium/CytAssist_FFPE_Human_Breast_Cancer
+    primary: idc_dcis
+    role: FFPE CytAssist; ActiveVisium pathologist 10-class
+    skip_rule_on: true
+    recommended_arm: STAMP gene-gated skip (gene_k=10 mutual)
+    graph_config:
+      base: STAIG spatial k=5
+      fm_skip: true
+      gene_gate:
+        gene_k: 10
+        mutual: true
+        gene_key: feat
+      max_hops: 0
+    harm_budget_profile: breast_skip_on_ffpe
+    harm_budget_status: PASS
+    harm_metrics:
+      collide: 13
+      look: 1
+      remote: 0
+      rga: 0
+      spatial_look: 1
+    violations: []
+    flags:
+    - spatial_lookalike=1 (local; gate blind spot)
+  DLPFC151673:
+    path: Dataset/DLPFC/151673
+    primary: cross
+    role: cortex layers (cross-layer)
+    skip_rule_on: null
+    recommended_arm: spatial baseline + cross-layer audit
+    graph_config:
+      base: STAIG spatial k=5
+      fm_skip: false
+    harm_budget_profile: cross_layer
+    harm_budget_status: REPORT
+    harm_metrics:
+      collide: 969
+      look: 391
+      remote: 3
+      rga: 0
+      spatial_look: 391
+    violations: []
+    flags:
+    - spatial_lookalike=391 (local; gate blind spot)
+    - cross-layer lookalike expected on cortex
+  Wu:
+    path: Dataset/visium/Wu_CID44971
+    primary: idc_dcis
+    role: breast short-range (Invasive–DCIS)
+    skip_rule_on: false
+    recommended_arm: STAIG spatial (k=5) — no FM skip
+    graph_config:
+      base: STAIG spatial k=5
+      fm_skip: false
+    harm_budget_profile: breast_skip_off
+    harm_budget_status: PASS
+    harm_metrics:
+      collide: 24
+      look: 6
+      remote: 1
+      rga: 1
+      spatial_look: 6
+    violations: []
+    flags:
+    - spatial_lookalike=6 (local; gate blind spot)

@@ -1,0 +1,245 @@
+{
+  "fm": "phikonv2",
+  "fm_file": "phikonv2_fix2_emb.npy",
+  "rule": "n_collide>=10 AND nn_mult>=3.0 AND gene_cos<=0.2",
+  "rows": [
+    {
+      "dataset": "BlockA",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "ON",
+      "primary": "idc_dcis",
+      "n_collide": 58,
+      "nn_mult_median": 10.024904533958072,
+      "gene_cos_median": 0.1125299710505582,
+      "ungated_lookalike": 29,
+      "ungated_remote": 33,
+      "gated_lookalike": 1,
+      "gated_remote": 0,
+      "n_edges_ungated": 13219,
+      "n_edges_gated": 11139,
+      "fm_redirects": {
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "CytAssist_Patho",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "ON",
+      "primary": "idc_dcis",
+      "n_collide": 79,
+      "nn_mult_median": 12.560677410105095,
+      "gene_cos_median": -0.020000141368827332,
+      "ungated_lookalike": 62,
+      "ungated_remote": 60,
+      "gated_lookalike": 3,
+      "gated_remote": 1,
+      "n_edges_ungated": 16845,
+      "n_edges_gated": 13760,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_xy_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "Wu",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 38,
+      "nn_mult_median": 1.0150371814655836,
+      "gene_cos_median": 0.14107122832524616,
+      "ungated_lookalike": 16,
+      "ungated_remote": 7,
+      "gated_lookalike": 6,
+      "gated_remote": 1,
+      "n_edges_ungated": 4109,
+      "n_edges_gated": 3629,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_xy_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "DLPFC151673",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "N/A",
+      "primary": "cross",
+      "n_collide": 1542,
+      "nn_mult_median": 1.007721917481618,
+      "gene_cos_median": 0.154037803953734,
+      "ungated_lookalike": 732,
+      "ungated_remote": 297,
+      "gated_lookalike": 362,
+      "gated_remote": 35,
+      "n_edges_ungated": 12860,
+      "n_edges_gated": 10352,
+      "fm_redirects": {
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "DLPFC151507",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "N/A",
+      "primary": "cross",
+      "n_collide": 1879,
+      "nn_mult_median": 1.744494345680074,
+      "gene_cos_median": 0.07696735611851938,
+      "ungated_lookalike": 1262,
+      "ungated_remote": 754,
+      "gated_lookalike": 455,
+      "gated_remote": 31,
+      "n_edges_ungated": 14906,
+      "n_edges_gated": 11850,
+      "fm_redirects": {
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "Liver_Yu_L5",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 188,
+      "nn_mult_median": 2.6626291405576046,
+      "gene_cos_median": -0.022435761177265322,
+      "ungated_lookalike": 115,
+      "ungated_remote": 92,
+      "gated_lookalike": 16,
+      "gated_remote": 1,
+      "n_edges_ungated": 11826,
+      "n_edges_gated": 9198,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_xy_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "Kidney_DKD1",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 284,
+      "nn_mult_median": 1.000426143949455,
+      "gene_cos_median": 0.3406808170686481,
+      "ungated_lookalike": 64,
+      "ungated_remote": 40,
+      "gated_lookalike": 14,
+      "gated_remote": 1,
+      "n_edges_ungated": 9675,
+      "n_edges_gated": 8104,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_xy_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    },
+    {
+      "dataset": "Xenium_Rep1_IDC",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 627,
+      "nn_mult_median": 1.5912658580574153,
+      "gene_cos_median": 0.32364365896557623,
+      "ungated_lookalike": 143,
+      "ungated_remote": 266,
+      "gated_lookalike": 24,
+      "gated_remote": 41,
+      "n_edges_ungated": 14183,
+      "n_edges_gated": 11691,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_fix2_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_fix2_emb.npy"
+      }
+    },
+    {
+      "dataset": "Hartman_BCSA_A1",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 321,
+      "nn_mult_median": 1.0070870825734013,
+      "gene_cos_median": 0.1036219510914461,
+      "ungated_lookalike": 149,
+      "ungated_remote": 43,
+      "gated_lookalike": 90,
+      "gated_remote": 4,
+      "n_edges_ungated": 10874,
+      "n_edges_gated": 8803,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_fix2_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_fix2_emb.npy"
+      }
+    },
+    {
+      "dataset": "CRC_Valdeolivas",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 375,
+      "nn_mult_median": 1.0161419087402235,
+      "gene_cos_median": 0.23823245302676288,
+      "ungated_lookalike": 70,
+      "ungated_remote": 51,
+      "gated_lookalike": 37,
+      "gated_remote": 2,
+      "n_edges_ungated": 7146,
+      "n_edges_gated": 5954,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_fix2_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_fix2_emb.npy"
+      }
+    },
+    {
+      "dataset": "CRC_Valdeolivas_Rep2",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 410,
+      "nn_mult_median": 1.0161419087402235,
+      "gene_cos_median": 0.2920411778139275,
+      "ungated_lookalike": 64,
+      "ungated_remote": 59,
+      "gated_lookalike": 25,
+      "gated_remote": 4,
+      "n_edges_ungated": 7995,
+      "n_edges_gated": 6636,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_fix2_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_fix2_emb.npy"
+      }
+    },
+    {
+      "dataset": "HPR_Prostate",
+      "fm": "phikonv2",
+      "ok": true,
+      "switch": "OFF",
+      "primary": "idc_dcis",
+      "n_collide": 0,
+      "nn_mult_median": null,
+      "gene_cos_median": null,
+      "ungated_lookalike": 0,
+      "ungated_remote": 0,
+      "gated_lookalike": 0,
+      "gated_remote": 0,
+      "n_edges_ungated": 8910,
+      "n_edges_gated": 7238,
+      "fm_redirects": {
+        "embeddings.npy": "phikonv2_xy_emb.npy",
+        "phikonv2_emb.npy": "phikonv2_xy_emb.npy"
+      }
+    }
+  ],
+  "time": "2026-09-30T19:12:00.477846+00:00"
+}

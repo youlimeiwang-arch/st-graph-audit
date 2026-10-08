@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# data, embeddings, model weights and run outputs are never committed
+*.h5
+*.h5ad
+*.npy
+*.npz
+*.pt
+*.pth
+*.safetensors
+*.tif
+*.tiff
+*.png
+*.jpg
+out/
+logs/
+Dataset/
+
+# local scratch copy, superseded by reproduce/staig
+third_party/

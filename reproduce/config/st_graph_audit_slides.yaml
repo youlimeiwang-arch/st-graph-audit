@@ -1,0 +1,162 @@
+# ST-Graph Audit slide registry (Track A)
+version: "0.2"
+slides:
+  - id: BlockA
+    kind: visium
+    path: Dataset/visium/Human_Breast_Cancer
+    role: breast case (IDC–DCIS)
+    gate: true
+    primary: idc_dcis
+    label_note: pathologist GT; freeze reference
+    truth_file: truth.txt
+    benchmark: true
+
+  - id: BlockA_Sec2
+    kind: visium
+    path: Dataset/visium/Block_A_Section_2
+    role: adjacent 10µm (xfer coarse, NOT pathologist GT)
+    gate: true
+    primary: idc_dcis
+    label_note: ECC-transferred coarse from Section 1; no ARI
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: CytAssist_Patho
+    kind: visium
+    path: Dataset/visium/CytAssist_FFPE_Human_Breast_Cancer
+    role: FFPE CytAssist; ActiveVisium pathologist 10-class
+    gate: true
+    primary: idc_dcis
+    label_note: Zenodo ActiveVisium pathologist GT; FFPE; audit only
+    truth_file: truth_pathologist.txt
+    benchmark: false
+
+  - id: Wu
+    kind: visium
+    path: Dataset/visium/Wu_CID44971
+    role: breast short-range (Invasive–DCIS)
+    gate: true
+    primary: idc_dcis
+    label_note: pathologist / Wu labels
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: DLPFC151673
+    kind: dlpfc
+    path: Dataset/DLPFC/151673
+    role: cortex layers (cross-layer)
+    gate: false
+    primary: cross
+    label_note: layer GT
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: DLPFC151507
+    kind: dlpfc
+    path: Dataset/DLPFC/151507
+    role: cortex layers (cross-layer; 2nd slide pattern)
+    gate: false
+    primary: cross
+    label_note: layer GT; Strategy A replicate of 151673
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: CRC_Parent
+    kind: visium
+    path: Dataset/visium/CRC_Parent
+    role: colorectal heterogeneous cancer (PI slate)
+    gate: true
+    primary: idc_dcis
+    label_note: Space Ranger graphclust remapped Tumor/Stroma via marker DE; primary collide=Tumor–Stroma
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: CRC_Valdeolivas
+    kind: visium
+    path: Dataset/visium/CRC_Valdeolivas
+    role: pathologist CRC (Valdeolivas SN048_A121573_Rep1)
+    gate: true
+    primary: idc_dcis
+    label_note: Pathologist compartments remapped to Tumor/Stroma/Mucosa/Immune/Mixed; primary collide=Tumor–Stroma
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: CRC_Valdeolivas_Rep2
+    kind: visium
+    path: Dataset/visium/CRC_Valdeolivas_Rep2
+    role: pathologist CRC replicate (Valdeolivas SN048_A121573_Rep2)
+    gate: true
+    primary: idc_dcis
+    label_note: Same 5-zone remap as Rep1; primary collide=Tumor–Stroma
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: HPR_Prostate
+    kind: visium
+    path: Dataset/visium/HPR_Normal_Prostate
+    role: normal prostate Skip-OFF control (PI HPR)
+    gate: true
+    primary: idc_dcis
+    label_note: Space Ranger domains; breast-style primary collide (IDC–DCIS/Tumor–Stroma) expected ~0 → Skip-OFF
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: Xenium_Rep1_IDC
+    kind: visium
+    path: Dataset/visium/Xenium_Rep1_IDC
+    role: Reply-9 Phase 1-A primary (Xenium + pathologist IDC–DCIS)
+    gate: true
+    primary: idc_dcis
+    label_note: Zenodo pathologist domain on Janesick Rep1; 100µm bins; not Block A/CytAssist/Wu
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: HER2ST_H1
+    kind: visium
+    path: Dataset/visium/HER2ST_H1
+    role: Reply-9 Phase 1-A side evidence (ST Andersson; not Visium/Xenium)
+    gate: true
+    primary: idc_dcis
+    label_note: pathologist cancer in situ→DCIS / invasive→IDC; demoted after Xenium redo
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: Kidney_DKD1
+    kind: visium
+    path: Dataset/visium/Kidney_DKD1
+    role: Reply-9 Phase 1-C kidney (morphology Proximal–Distal)
+    gate: true
+    primary: idc_dcis
+    label_note: GSE261545 Morph-based; PT→Proximal; LH/CD→Distal; primary collide Proximal–Distal
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: Liver_H36
+    kind: visium
+    path: Dataset/visium/Liver_H36
+    role: Reply-9 Phase 1-B liver (marker Zone_PP–Zone_PC)
+    gate: true
+    primary: idc_dcis
+    label_note: Guilliams GSM5764426; marker porto-central tertiles; primary Zone_PP–Zone_PC
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: Liver_Yu_L5
+    kind: visium
+    path: Dataset/visium/Liver_Yu_L5
+    role: Reply-9 Phase 1-B redo (Yu Sci Data Zone1/3)
+    gate: true
+    primary: idc_dcis
+    label_note: Yu L5 HE-informed zones; Zone1=PP Zone3=PC
+    truth_file: truth.txt
+    benchmark: false
+
+  - id: Hartman_BCSA_A1
+    kind: visium
+    path: Dataset/visium/Hartman_BCSA_A1
+    role: Reply-9 Phase 1-A Visium breast (Hartman CTA Invasive–DCIS)
+    gate: true
+    primary: idc_dcis
+    label_note: Hartman CTA annotated HE color→spot; primary Invasive–DCIS; not Block A/CytAssist/Wu
+    truth_file: truth.txt
+    benchmark: false

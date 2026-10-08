@@ -1,0 +1,6 @@
+ST-Graph Audit
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+reproduce/staig/ contains a modified copy of STAIG (https://github.com/y-itao/STAIG),
+also licensed under the Apache License, Version 2.0. The copy includes local changes made
+for this study; it is the exact code that produced the reported clustering results.
