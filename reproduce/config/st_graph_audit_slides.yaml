@@ -104,10 +104,10 @@ slides:
   - id: Xenium_Rep1_IDC
     kind: visium
     path: Dataset/visium/Xenium_Rep1_IDC
-    role: Reply-9 Phase 1-A primary (Xenium + pathologist IDC–DCIS)
+    role: Reply-9 Phase 1-A primary (Xenium Rep1, IDC–DCIS)
     gate: true
     primary: idc_dcis
-    label_note: Zenodo pathologist domain on Janesick Rep1; 100µm bins; not Block A/CytAssist/Wu
+    label_note: "100µm bins. truth.txt (used in Step 1 and the pre-registered runs) joins idc_pathologist.csv, which belongs to a different Xenium dataset, so its labels are wrong. Corrected labels: truth_janesick.txt (Janesick et al. 2023 supervised Rep1 cell types, majority per bin; scripts/data_prep/relabel_xenium_rep1_janesick.py)"
     truth_file: truth.txt
     benchmark: false
 
