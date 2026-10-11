@@ -1,0 +1,87 @@
+{
+  "phikonv2": {
+    "n_seeds": 10,
+    "ari_ungated_mean": 0.26411129948697626,
+    "ari_gated_mean": 0.26024430514639113,
+    "delta_mean": -0.0038669943405851004,
+    "direction": {
+      "label": "no stable change",
+      "n": 10,
+      "n_up": 3,
+      "n_down": 7,
+      "need": 8,
+      "wilcoxon_p": 0.431640625,
+      "median": -0.012641369394983282,
+      "min": -0.07012225414947315,
+      "max": 0.12038654856915301
+    }
+  },
+  "phikon": {
+    "n_seeds": 10,
+    "ari_ungated_mean": 0.2591863017266142,
+    "ari_gated_mean": 0.25641298083255515,
+    "delta_mean": -0.0027733208940590504,
+    "direction": {
+      "label": "no stable change",
+      "n": 10,
+      "n_up": 4,
+      "n_down": 6,
+      "need": 8,
+      "wilcoxon_p": 0.6953125,
+      "median": -0.010678149298078643,
+      "min": -0.05679818830481914,
+      "max": 0.04994818935824083
+    }
+  },
+  "plip": {
+    "n_seeds": 10,
+    "ari_ungated_mean": 0.2622185264412641,
+    "ari_gated_mean": 0.2587242582648136,
+    "delta_mean": -0.0034942681764504628,
+    "direction": {
+      "label": "no stable change",
+      "n": 10,
+      "n_up": 5,
+      "n_down": 5,
+      "need": 8,
+      "wilcoxon_p": 0.76953125,
+      "median": -0.00645664580788935,
+      "min": -0.06259484560697282,
+      "max": 0.08796337150872477
+    }
+  },
+  "uni": {
+    "n_seeds": 10,
+    "ari_ungated_mean": 0.2777888913257749,
+    "ari_gated_mean": 0.25024273691780163,
+    "delta_mean": -0.027546154407973245,
+    "direction": {
+      "label": "no stable change",
+      "n": 10,
+      "n_up": 3,
+      "n_down": 7,
+      "need": 8,
+      "wilcoxon_p": 0.16015625,
+      "median": -0.027800302258733756,
+      "min": -0.09547485749452123,
+      "max": 0.05029947274037466
+    }
+  },
+  "conch": {
+    "n_seeds": 10,
+    "ari_ungated_mean": 0.27219325183627113,
+    "ari_gated_mean": 0.2508315820575107,
+    "delta_mean": -0.02136166977876043,
+    "direction": {
+      "label": "no stable change",
+      "n": 10,
+      "n_up": 4,
+      "n_down": 6,
+      "need": 8,
+      "wilcoxon_p": 0.375,
+      "median": -0.010267941887500326,
+      "min": -0.11678329480894767,
+      "max": 0.06205960206140443
+    }
+  }
+}

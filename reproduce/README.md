@@ -8,7 +8,10 @@ or display strings was replaced by "PI" (`config/st_graph_audit_slides.yaml` twi
 `scripts/audit/run_local_extension_pipeline.py`, `scripts/phase2_reply10/build_phase2_step1_multiseed_table.py`,
 and the report text in `scripts/prereg/build_prereg_summary.py`). Because of that last edit, this copy of
 `build_prereg_summary.py` no longer matches the SHA-256 recorded before the pre-registered runs; the other eight
-pre-registered scripts and `scripts/fm_complete/run_phikonv2_fill.py` match it. The code is kept as it ran, including in-memory
+pre-registered scripts and `scripts/fm_complete/run_phikonv2_fill.py` match it. One further line differs from the
+project: in `scripts/review_fix/run_xenium_janesick_audit.py`, `PKG` (the location of the `st_graph_audit`
+package) points to the repository root instead of the project's sibling folder, so the stored
+`results/xenium_relabel/stageA_janesick.json` records the SHA-256 of the project copy. The code is kept as it ran, including in-memory
 redirects of embedding and label files, so the scripts are not tidy library code. To use the method on your
 own data, use the `st_graph_audit` package in the repository root instead.
 
@@ -38,7 +41,7 @@ Data are not redistributed here; download links are given in Supplementary Table
 | Visium CytAssist FFPE | `visium/CytAssist_FFPE_Human_Breast_Cancer` | breast | IDC/Invasive–DCIS |
 | Wu CID44971 | `visium/Wu_CID44971` | breast | Invasive–DCIS |
 | Hartman A1 | `visium/Hartman_BCSA_A1` (labels `truth_filled.txt`) | breast | Invasive–DCIS |
-| Xenium Rep1, 100 µm bins | `visium/Xenium_Rep1_IDC` (built by `scripts/data_prep/pack_xenium_rep1_phase1a.py`) | breast | IDC/Invasive–DCIS |
+| Xenium Rep1, 100 µm bins | `visium/Xenium_Rep1_IDC` (built by `scripts/data_prep/pack_xenium_rep1_phase1a.py`; corrected labels `truth_janesick.txt`, see below) | breast | IDC/Invasive–DCIS |
 | Valdeolivas SN048_A121573 Rep1, Rep2 | `visium/CRC_Valdeolivas`, `visium/CRC_Valdeolivas_Rep2` | colorectal | Tumor–Stroma |
 | Kidney DKD1 | `visium/Kidney_DKD1` | kidney | Proximal–Distal |
 | Liver Yu L5 | `visium/Liver_Yu_L5` | liver | Zone_PP–Zone_PC |
@@ -69,6 +72,22 @@ Data are not redistributed here; download links are given in Supplementary Table
    ```
 6. **Five-FM comparison table:** `python scripts/fm_complete/run_phikonv2_fill.py --run`, then
    `python scripts/fm_complete/build_fm_comparison_table.py`.
+
+7. **Xenium Rep1 with corrected labels.** The pathologist file `idc_pathologist.csv` (Zenodo 15411357) that
+   `pack_xenium_rep1_phase1a.py` joins on `cell_id` annotates a different Xenium breast dataset, so the
+   original `truth.txt` labels do not describe the Rep1 cells. The bins, coordinates and embeddings are kept;
+   only the labels are replaced by the majority of the supervised Rep1 cell types of Janesick et al. 2023
+   (`Cell_Barcode_Type_Matrices.xlsx`, sheet "Xenium R1 Fig1-5 (supervised)"; unlabeled cells do not vote).
+   Place the Rep1 `cell_feature_matrix.h5`, `cells.csv.gz`, `idc_pathologist.csv` and the xlsx under
+   `Dataset/xenium/_downloads/`, then:
+   ```
+   python scripts/data_prep/relabel_xenium_rep1_janesick.py     # truth_janesick.txt; first checks it rebuilds truth.txt
+   python scripts/review_fix/run_xenium_janesick_audit.py       # stage A, old labels must match results/part3_stageA
+   python scripts/data_prep/xenium_janesick_train_inputs.py     # label file and FM rows for training
+   python scripts/review_fix/run_xenium_janesick_stageB.py --run   # one old-label sanity run, then 100 runs
+   ```
+   Stored outputs, the bin labels (`truth_janesick.txt`, 3,975 of 4,006 bins) and a summary table are in
+   `results/xenium_relabel/`.
 
 Seeds: 0, 1, 2, 3, 7, 42, 99, 123, 2023, 39788. ARI values depend on GPU, CUDA and library versions;
 the edge-level audit is deterministic.

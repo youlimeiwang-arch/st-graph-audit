@@ -1,0 +1,98 @@
+{
+  "slide": "Xenium_Rep1_IDC",
+  "label_source": "Janesick et al. 2023 Nat Commun, Cell_Barcode_Type_Matrices.xlsx, sheet 'Xenium R1 Fig1-5 (supervised)'; bin label = majority mapped cell type, Unlabeled excluded",
+  "replaces": "truth.txt (idc_pathologist.csv joined on cell_id; belongs to a different Xenium dataset)",
+  "bins_total": 4006,
+  "bins_labeled": 3975,
+  "bins_without_labeled_cells": 31,
+  "cells_in_bins": 166672,
+  "cells_voting": 158150,
+  "label_counts": {
+    "Stroma": 2011,
+    "IDC": 841,
+    "DCIS": 493,
+    "Immune": 489,
+    "Myoepi": 98,
+    "Vessel": 43
+  },
+  "n_IDC": 841,
+  "n_DCIS": 493,
+  "janesick_map": {
+    "Invasive_Tumor": "IDC",
+    "Prolif_Invasive_Tumor": "IDC",
+    "DCIS_1": "DCIS",
+    "DCIS_2": "DCIS",
+    "Stromal": "Stroma",
+    "Perivascular-Like": "Stroma",
+    "Endothelial": "Vessel",
+    "Myoepi_ACTA2+": "Myoepi",
+    "Myoepi_KRT15+": "Myoepi",
+    "CD4+_T_Cells": "Immune",
+    "CD8+_T_Cells": "Immune",
+    "B_Cells": "Immune",
+    "Macrophages_1": "Immune",
+    "Macrophages_2": "Immune",
+    "IRF7+_DCs": "Immune",
+    "LAMP3+_DCs": "Immune",
+    "Mast_Cells": "Immune",
+    "T_Cell_&_Tumor_Hybrid": "Hybrid",
+    "Stromal_&_T_Cell_Hybrid": "Hybrid"
+  },
+  "agreement_with_truth_txt": 0.24987518721917124,
+  "crosstab_truth_txt_vs_janesick": {
+    "Adipose": {
+      "DCIS": 7,
+      "IDC": 8,
+      "Immune": 2,
+      "Myoepi": 0,
+      "NA": 0,
+      "Stroma": 5,
+      "Vessel": 2
+    },
+    "DCIS": {
+      "DCIS": 35,
+      "IDC": 58,
+      "Immune": 37,
+      "Myoepi": 3,
+      "NA": 1,
+      "Stroma": 197,
+      "Vessel": 4
+    },
+    "IDC": {
+      "DCIS": 340,
+      "IDC": 602,
+      "Immune": 354,
+      "Myoepi": 76,
+      "NA": 27,
+      "Stroma": 1365,
+      "Vessel": 24
+    },
+    "Immune": {
+      "DCIS": 9,
+      "IDC": 19,
+      "Immune": 9,
+      "Myoepi": 2,
+      "NA": 0,
+      "Stroma": 31,
+      "Vessel": 1
+    },
+    "Normal_duct": {
+      "DCIS": 16,
+      "IDC": 1,
+      "Immune": 11,
+      "Myoepi": 2,
+      "NA": 0,
+      "Stroma": 58,
+      "Vessel": 3
+    },
+    "Stroma": {
+      "DCIS": 86,
+      "IDC": 153,
+      "Immune": 76,
+      "Myoepi": 15,
+      "NA": 3,
+      "Stroma": 355,
+      "Vessel": 9
+    }
+  }
+}
