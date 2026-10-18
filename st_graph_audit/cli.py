@@ -22,7 +22,7 @@ EXAMPLES = """examples:
   # custom label pairs instead of the built-in ones
   python -m st_graph_audit h5ad s.h5ad --fm-key uni --label-key zone --collide Periportal:Pericentral --out out/liver
 
-outputs (in --out, which must not already contain summary.json):
+outputs (in --out; existing output files are never overwritten):
   summary.json         switch, harm counts on both graphs, settings
   edges_ungated.csv    one row per edge of the ungated graph (spatial + FM skip edges)
   edges_gated.csv      same for the gated graph
@@ -61,8 +61,12 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv=None) -> int:
     args = _parser().parse_args(argv)
     out = Path(args.out)
-    if (out / "summary.json").exists():
-        print(f"error: {out / 'summary.json'} exists; choose a new --out", file=sys.stderr)
+    output_paths = [out / name for name in
+                    ("summary.json", "edges_ungated.csv", "edges_gated.csv", "skip_gated.csv")]
+    existing_outputs = [path for path in output_paths if path.exists()]
+    if existing_outputs:
+        paths = ", ".join(str(path) for path in existing_outputs)
+        print(f"error: output file(s) already exist: {paths}; choose a new --out", file=sys.stderr)
         return 1
 
     from .graph import spatial_knn_graph

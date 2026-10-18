@@ -18,10 +18,12 @@ def spatial_knn_graph(xy, k: int = 5) -> np.ndarray:
     dist = ot.dist(xy, xy, metric="euclidean")
     n = dist.shape[0]
     adj = np.zeros((n, n))
+    np.fill_diagonal(dist, np.inf)
     for i in range(n):
         order = dist[i].argsort()
-        adj[i, order[1 : k + 1]] = 1
+        adj[i, order[:k]] = 1
     adj = adj + adj.T
+    np.fill_diagonal(adj, 0)
     return np.where(adj > 1, 1, adj)
 
 

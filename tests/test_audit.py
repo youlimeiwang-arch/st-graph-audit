@@ -1,4 +1,8 @@
 """python -m unittest discover tests   (also runs under pytest)"""
+from contextlib import redirect_stderr
+from io import StringIO
+from pathlib import Path
+import tempfile
 import unittest
 
 import numpy as np
@@ -12,6 +16,7 @@ from st_graph_audit import (
     spatial_knn_graph,
     switch_on,
 )
+from st_graph_audit.cli import main as cli_main
 from st_graph_audit.demo import toy_section
 
 
@@ -24,6 +29,12 @@ class TestGraph(unittest.TestCase):
         self.assertTrue(np.array_equal(self.g0, self.g0.T))
         self.assertEqual(np.trace(self.g0), 0)
         self.assertTrue((self.g0.sum(1) >= 5).all())
+
+    def test_spatial_graph_excludes_self_with_duplicate_coordinates(self):
+        xy = np.array([[0.0, 0.0], [0.0, 0.0], [1.0, 0.0]])
+        graph = spatial_knn_graph(xy, k=1)
+        self.assertTrue(np.array_equal(np.diag(graph), np.zeros(3)))
+        self.assertTrue(np.array_equal(graph, graph.T))
 
     def test_skip_edges_are_new_and_kept_in_graph(self):
         g, pairs = add_skip_edges(self.g0, self.fm, k=1)
@@ -69,6 +80,23 @@ class TestAudit(unittest.TestCase):
         self.assertEqual(parse_pairs(["A:B"]), frozenset({frozenset({"A", "B"})}))
         with self.assertRaises(ValueError):
             parse_pairs(["A"])
+
+
+class TestCLI(unittest.TestCase):
+    def test_refuses_to_overwrite_partial_output(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = Path(temp_dir) / "out"
+            out.mkdir()
+            partial = out / "edges_gated.csv"
+            partial.write_text("keep me", encoding="utf-8")
+            stderr = StringIO()
+            with redirect_stderr(stderr):
+                status = cli_main([
+                    "h5ad", "missing.h5ad", "--fm-key", "fm", "--label-key", "label", "--out", str(out)
+                ])
+            self.assertEqual(status, 1)
+            self.assertIn("edges_gated.csv", stderr.getvalue())
+            self.assertEqual(partial.read_text(encoding="utf-8"), "keep me")
 
 
 if __name__ == "__main__":
