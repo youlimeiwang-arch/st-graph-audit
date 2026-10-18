@@ -2,7 +2,7 @@
 
 > **Section:** 10x Xenium human breast Rep1 (Janesick et al. 2023), aggregated into 100 µm bins (4,006 bins).
 > **What changed:** labels only. Bins, coordinates, FM embeddings, graph construction, thresholds and training settings are unchanged.
-> **Sources:** `logs/xenium_relabel/stageA_janesick.json`, `logs/xenium_relabel/stageB_summary.json`, `logs/xenium_relabel/stageB_janesick.jsonl`, `Dataset/visium/Xenium_Rep1_IDC/LABEL_SOURCE_janesick.json`. Old-label values are from `fm_comparison_12x5.md`.
+> **Sources:** `logs/xenium_relabel/stageA_janesick.json`, `logs/xenium_relabel/stageB_summary.json`, `logs/xenium_relabel/stageB_janesick.jsonl`, `logs/xenium_relabel/part3_janesick_sensitivity.json`, `Dataset/visium/Xenium_Rep1_IDC/LABEL_SOURCE_janesick.json`. Old-label values are from `fm_comparison_12x5.md`.
 
 ## 1. Label sets
 
@@ -54,4 +54,5 @@ Seeds 0, 1, 2, 3, 7, 42, 99, 123, 2023, 39788. STAIG settings as in Supplementar
 
 - The corrected labels add one switch-ON combination (Xenium, PLIP). Its median Δ ARI is −0.006 (5 up, 5 down), so it is not an "up" case.
 - The other four Xenium combinations stay OFF.
-- The primary Part 3 test has **not** been recomputed with the corrected labels. Even so, adding a non-positive ON case cannot turn p = 1.000 into a positive result, so the Benefit criterion stays unmet.
+- The corrected-label Part 3 sensitivity test replaces the five Xenium dataset–encoder entries and holds every other entry fixed. It includes 10 ON and 30 OFF combinations, with median(ON) − median(OFF) = 0.0173 and one-sided within-dataset permutation p = 0.2134 (10,000 permutations; seed 0). The Benefit criterion remains unmet.
+- The original pre-registered test is preserved separately: 9 ON and 26 OFF combinations, median difference = 0.0186, p = 1.000. Its Xenium entries used the legacy labels and were below the ARI floor.
