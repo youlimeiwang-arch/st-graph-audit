@@ -33,7 +33,7 @@ Place each section under `Dataset/visium/<folder>/` or `Dataset/DLPFC/<id>/` as 
 folder (`filtered_feature_bc_matrix.h5`, `spatial/`) plus a label file `truth.txt`
 (barcode, tab, label; no header). Sections, folders and label sources are listed in
 `config/st_graph_audit_slides.yaml`; per-section STAIG hyperparameters are in `train_img_config.yaml`.
-Data are not redistributed here; download links are given in Supplementary Table S1 of the paper.
+Data are not redistributed here. Dataset and annotation provenance are listed in Supplementary Table S1 of the paper, but this repository does not provide a one-command data download. Obtain the raw sections and annotations from their original providers, then place the prepared inputs at the paths below. Some source files or model weights may require separate access or license acceptance.
 
 | Section | Folder | Tissue | Primary edges |
 |---|---|---|---|
@@ -88,6 +88,15 @@ Data are not redistributed here; download links are given in Supplementary Table
    ```
    Stored outputs, the bin labels (`truth_janesick.txt`, 3,975 of 4,006 bins) and a summary table are in
    `results/xenium_relabel/`.
+
+8. **Post hoc gene-neighbour-only comparator:**
+   `python scripts/audit/run_gene_knn_only_baseline.py --run`. It selects the most gene-similar mutual
+   top-10 non-spatial neighbour for each spot, then symmetrizes the skip pairs. FM ranking, labels,
+   audit counts and the switch do not select its edges. The training recipe and ten-seed list are
+   reused; completed output for all 12 sections (120 successful runs, zero failures) is preserved in
+   `results/gene_knn_only_baseline.jsonl`. This exploratory control was run after the preregistered
+   analyses. Its skip-edge counts differ from those of the FM-gated graphs, so the comparison does
+   not isolate an audit/switch-specific clustering benefit.
 
 Seeds: 0, 1, 2, 3, 7, 42, 99, 123, 2023, 39788. ARI values depend on GPU, CUDA and library versions;
 the edge-level audit is deterministic.

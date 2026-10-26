@@ -8,7 +8,7 @@ Histology-augmented spatial GNNs often add "skip" edges between spots that look 
 - **decides a section-level switch**: ON when FM skip edges are likely to add remote lookalike edges on that section;
 - **builds a gated graph**: an FM skip edge is kept only if the two spots are also mutual nearest neighbors in expression space.
 
-It trains nothing and needs no GPU. Graph construction uses coordinates, expression and the FM embedding only; labels are used to count harmful edges and to compute the switch.
+The audit and graph-construction package trains nothing and needs no GPU; the separate clustering evaluations in `reproduce/` do train a model. Graph construction uses coordinates, expression and the FM embedding only; labels are used to count audited edges and to compute the switch.
 
 ## Install
 
@@ -80,7 +80,7 @@ res.graph_gated, res.skip_gated                  # gated adjacency, kept skip ed
 | Remote edge | distance ≥ 3 × median nearest-neighbor distance |
 | Switch ON | on the collide edges of the ungated graph: n ≥ 10, median distance ratio ≥ 3, median gene cosine ≤ 0.20 |
 
-Thresholds were fixed on one section (10x Visium breast cancer, Block A) and used unchanged everywhere else.
+The thresholds and switch rule were developed using Block A and Wu CID44971, with HER2ST H1 as an additional design case. Block A is therefore a development example; the rule was subsequently held fixed for the other evaluated sections.
 
 Built-in collide pairs (after coarsening labels such as `IDC_3` → `IDC`): IDC or Invasive vs DCIS, Tumor vs Stroma, Periportal vs Pericentral (and Zone_PP vs Zone_PC), Proximal vs Distal (and PT vs DT), Tubule vs Glomerulus, LH vs CD. Use `--collide A:B` for other tissues.
 
